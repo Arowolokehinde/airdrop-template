@@ -114,7 +114,7 @@ contract MultiCriteriaAirdrop1155 is Ownable {
         );
     }
 
-    function claim(address user, uint256 amount, bytes32[] calldata proof) public onlyOwner {
+    function claim(address user, uint256 , bytes32[] calldata) public onlyOwner {
         require(isAllowed(user), "User does not meet eligibility criteria");
         require(!hasExpired(), "Airdrop already expired");
         require(!hasClaimed(user), "Address already claimed this airdrop");
@@ -287,7 +287,7 @@ contract MultiCriteriaAirdrop1155 is Ownable {
         }
     }
 
-    function setRoot(bytes32 _root) external onlyOwner {
+    function setRoot(bytes32 ) external view onlyOwner {
         // Not applicable for multi-criteria airdrop, but required for interface compliance
         revert("Multi-criteria airdrop does not use Merkle trees");
     }
@@ -333,7 +333,7 @@ contract MultiCriteriaAirdrop1155 is Ownable {
         return _tokenContract.balanceOf(address(this), _tokenId);
     }
 
-    function onERC1155Received(address operator, address from, uint256 id, uint256 value, bytes memory data) external pure returns (bytes4) {
+    function onERC1155Received(address , address , uint256 , uint256 , bytes memory) external pure returns (bytes4) {
         return bytes4(keccak256("onERC1155Received(address,address,uint256,uint256,bytes)"));
     }
 }
